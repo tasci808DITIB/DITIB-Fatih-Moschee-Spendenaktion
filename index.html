@@ -1,0 +1,263 @@
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spendenaufruf – DITIB Fatih-Moschee Ingelheim</title>
+  <meta name="description" content="Spendenaufruf für die Sanierung der Außenanlagen unserer Moschee. PayPal, IBAN und Kontakt. QR-Code & druckfertiger Flyer." />
+  <style>
+    :root{
+      --bg:#0f172a; --card:#111827; --muted:#94a3b8; --text:#e5e7eb;
+      --accent:#22c55e; --accent-2:#14b8a6;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:inherit}
+    .wrap{max-width:1000px;margin:0 auto;padding:24px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;background:var(--accent);color:#062b16;font-weight:700;text-decoration:none;border:1px solid rgba(0,0,0,.2)}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.25)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+    header h1{font-size:18px;margin:0;letter-spacing:.3px}
+    header small{color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+    .hero h2{font-size:36px;margin:0 0 10px;line-height:1.1}
+    .hero p{color:#d1d5db;margin:0 0 16px}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+    .badge{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(59,130,246,.1)}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+    .section h3{margin:0 0 8px}
+    .donate-box{display:grid;gap:10px}
+    .kv{display:grid;grid-template-columns:140px 1fr;gap:8px;align-items:center}
+    .kv code,.kv span.copy{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.06);padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+    .qr-card{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+    .muted{color:var(--muted)}
+    footer{margin-top:26px;color:var(--muted);font-size:14px}
+    .flyer{margin-top:24px}
+    .flyer .panel{background:white;color:#0b1220;border-radius:16px;padding:24px;border:1px solid #e5e7eb}
+    .flyer .topline{display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .flyer h4{font-size:26px;margin:8px 0}
+    .flyer .columns{display:grid;grid-template-columns:1.4fr .8fr;gap:24px;align-items:start;margin-top:8px}
+    .flyer .pill{display:inline-block;padding:6px 10px;background:#ecfeff;color:#0e7490;border-radius:999px;border:1px solid #a5f3fc}
+    .flyer .qr-box{display:grid;place-items:center;border:1px dashed #cbd5e1;border-radius:12px;padding:12px}
+    .flyer .contact{font-size:14px;line-height:1.5}
+
+    @media (max-width:860px){
+      .hero{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+
+    /* Print: nur den Flyer anzeigen */
+    @media print{
+      header,.hero,.section,.qr-card,.print-actions,footer{display:none !important}
+      body{background:white;color:#000}
+      .wrap{max-width:100%;padding:0}
+      .flyer{display:block !important;margin:0}
+      .flyer .panel{border:none;border-radius:0;box-shadow:none}
+      @page{size:A4;margin:12mm}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>DITIB Fatih-Moschee – Spendenaktion</h1>
+        <small>Sanierung der Außenanlagen · <span id="currentYear"></span></small>
+      </div>
+      <div class="print-actions">
+        <a class="btn secondary" href="#flyer">Zum Flyer</a>
+        <button class="btn" onclick="window.print()">Flyer drucken (Hochformat)</button>
+        <button class="btn secondary" onclick="printLandscape()">Flyer drucken (Querformat)</button>
+      </div>
+    </header>
+
+    <main class="card">
+      <section class="hero">
+        <div>
+          <h2>Unterstütze die Sanierung der Außenanlagen</h2>
+          <p>Priorität 1: Außenputz & Treppengeländer. Zusätzlich planen wir ein längliches Carport mit Überdachung für Feste – sowie weitere Instandsetzungen am Gebäude und auf dem Gelände.</p>
+          <div class="badges">
+            <span class="badge">Spendenquittung persönlich abholbar</span>
+            <span class="badge">PayPal & Überweisung</span>
+            <span class="badge">Gemeinsam für Ingelheim</span>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" id="paypalBtn" href="https://www.paypal.com/donate?business=ditibingelheim@outlook.de&currency_code=EUR" target="_blank" rel="noopener">Jetzt per PayPal spenden</a>
+            <a class="btn secondary" href="#spenden">Banküberweisung</a>
+          </div>
+        </div>
+        <div class="card" style="padding:16px">
+          <div class="gallery">
+            <img src="moschee-1.jpg" alt="Moschee – Außenansicht" />
+            <img src="moschee-2.jpg" alt="Eingangsbereich" />
+            <img src="moschee-3.jpg" alt="Säulenhalle / Vorplatz" />
+          </div>
+        </div>
+      </section>
+
+      <section id="spenden" class="section" style="margin-top:22px">
+        <h3>Spendenmöglichkeiten</h3>
+        <div class="donate-box">
+          <div class="kv"><strong>IBAN</strong> <span class="copy" id="ibanText">DE18 5519 0000 0532 3220 13</span></div>
+          <div class="kv"><strong>BIC</strong> <code>MNVBMDE55</code></div>
+          <div class="kv"><strong>Kontoinhaber</strong> <code>DITIB – Türkisch‑Islamische Gemeinde zu Ingelheim e.V.</code></div>
+          <div class="kv"><strong>Verwendungszweck</strong> <code>Spende – Sanierung Außenanlagen</code></div>
+          <div class="kv"><strong>PayPal</strong> <code id="ppText">ditibingelheim@outlook.de</code></div>
+          <div class="kv"><strong>Kontakt</strong> <code>ditibingelheim@outlook.de · 06132 75743</code></div>
+          <small class="muted">Hinweis: Spendenquittungen können persönlich in der Verwaltung abgeholt werden.</small>
+        </div>
+      </section>
+
+      <section class="section" style="margin-top:22px">
+        <h3>Wofür werden die Spenden verwendet?</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <p><strong>Deutsch</strong></p>
+            <p>Priorität 1: Sanierung des Außenputzes und der Treppengeländer. Weitere Maßnahmen: Erneuerung und Ausbesserung von Wegeflächen und Belägen, Modernisierung der Außenbeleuchtung, kleinere und größere Instandsetzungen am Gebäude und auf dem Gelände, Anpassungen an Beschilderung/Namensschildern. Zusätzlich planen wir ein längliches Carport mit Überdachung als wettergeschützte Aufenthalts- und Sitzmöglichkeit für Feste und Gemeindeaktivitäten. Jede Spende fließt direkt in diese Arbeiten.</p>
+          </div>
+          <div>
+            <p><strong>Türkçe</strong></p>
+            <p>Öncelik 1: Dış sıva ve merdiven korkuluklarının yenilenmesi. Diğer çalışmalar: yürüyüş alanları ve kaplamaların yenilenmesi/tamiri, dış aydınlatmanın modernizasyonu, bina ve arazi genelinde küçük/büyük bakım‑onarım, yönlendirme ve isim tabelalarının güncellenmesi. Ayrıca festivaller ve etkinlikler için uzun, üstü kapalı bir oturma alanı (çardak) planlanmaktadır. Bağışlarınız doğrudan bu işlere aktarılacaktır.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="margin-top:22px">
+        <h3>QR‑Code zum Teilen</h3>
+        <div class="qr-card card" style="padding:16px">
+          <div id="qrcode"></div>
+          <div>
+            <strong>Scannen & informieren</strong>
+            <p class="muted">Dieser QR‑Code enthält den Link zu dieser Seite (<span id="pageUrl"></span>) – oder eine Wunsch‑URL über den <code>?link=</code>-Parameter.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn secondary" onclick="downloadQR()">QR-Code herunterladen</button>
+              <button class="btn secondary" onclick="copyUrl()">Link kopieren</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="margin-top:22px">
+        <h3>Impressum & Datenschutz</h3>
+        <p class="muted">Verantwortlich: DITIB – Türkisch‑Islamische Gemeinde zu Ingelheim e.V. · E-Mail: ditibingelheim@outlook.de · Tel.: 06132 75743.
+        Datenschutz: Personenbezogene Daten werden ausschließlich zur Bearbeitung von Anfragen/Spenden genutzt. Es erfolgt keine Weitergabe an Dritte, außer wenn gesetzlich erforderlich. Auf Wunsch löschen wir Ihre Daten.</p>
+      </section>
+
+      <section id="flyer" class="flyer">
+        <h3>Flyer (A4) – Vorschau</h3>
+        <div class="panel">
+          <div class="topline">
+            <div>
+              <span class="pill">Spendenaufruf</span>
+              <h4>DITIB Fatih-Moschee • Türkisch‑Islamische Union der Anstalt für Religion Ingelheim u. Umgebung e.V.</h4>
+              <p><strong>Projekt:</strong> Sanierung der Außenanlagen · Dış alanların yenilenmesi</p>
+            </div>
+            <div class="qr-box">
+              <div id="qrcode-flyer"></div>
+              <small>Scannen für Details</small>
+            </div>
+          </div>
+          <div class="columns">
+            <div>
+              <p><strong>DE</strong> Priorität 1: Außenputz & Treppengeländer. Außerdem: Wege/Beläge, Beleuchtung, Instandsetzungen – sowie geplantes, langes Carport mit Überdachung und Sitzmöglichkeiten.</p>
+              <p><strong>TR</strong> Öncelik 1: Dış sıva ve merdiven korkulukları. Ayrıca: yürüyüş alanları/kaplamalar, aydınlatma, bakım‑onarım ve uzun, üstü kapalı oturma alanı.</p>
+              <p><strong>Überweisung</strong><br>
+                IBAN: DE18 5519 0000 0532 3220 13 · BIC: MNVBMDE55<br>
+                Inhaber: DITIB – Türkisch‑Islamische Gemeinde zu Ingelheim e.V.<br>
+                Zweck: Spende – Sanierung Außenanlagen
+              </p>
+              <p><strong>PayPal:</strong> ditibingelheim@outlook.de</p>
+              <p><strong>Spendenquittung:</strong> Persönlich in der Verwaltung abholbar.</p>
+            </div>
+            <div>
+              <div class="qr-box" style="margin-bottom:12px">
+                <div id="qrcode-flyer-big"></div>
+              </div>
+              <div class="contact">
+                <strong>Kontakt</strong><br>
+                E-Mail: ditibingelheim@outlook.de<br>
+                Telefon: 06132 75743<br>
+                Web: <span id="pageUrl2"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="currentYear2"></span> DITIB Fatih-Moschee – Vielen Dank für Ihre Unterstützung.
+      </footer>
+    </main>
+  </div>
+
+  <script>
+/*! qrcode.js v1.0.0 (MIT) – simplified minimal encoder for short URLs */
+!function(o){var e={L:1,M:0,Q:3,H:2};function t(t){this.typeNumber=t||4,this.errorCorrectLevel=e.M,this.modules=null,this.moduleCount=0,this.dataList=[]}
+function n(o){this.mode=4,this.data=o,this.parsed=[];for(var e=0;e<o.length;e++)this.parsed.push(o.charCodeAt(e))}
+n.prototype={getLength:function(){return this.parsed.length},write:function(o){for(var e=0;e<this.parsed.length;e++)o.put(this.parsed[e],8)}};
+function r(){this.buffer=[],this.length=0}
+r.prototype={put:function(o,e){for(var t=0;t<e;t++)this.putBit(1==(o>>>(e-t-1)&1))},get:function(o){var e=Math.floor(o/8);return 1==(1&this.buffer[e]>>>7-o%8)},getLengthInBits:function(){return this.length},putBit:function(o){var e=Math.floor(this.length/8);this.buffer.length<=e&&this.buffer.push(0),o&&(this.buffer[e]|=128>>>this.length%8),this.length++}};
+t.prototype={addData:function(o){this.dataList.push(new n(o))},isDark:function(o,e){if(null==this.modules[o]||null==this.modules[o][e])throw new Error(o+","+e);return this.modules[o][e]},getModuleCount:function(){return this.moduleCount},make:function(){this._makeImpl()},_makeImpl:function(){var o=4*this.typeNumber+17;this.moduleCount=o,this.modules=new Array(o);for(var e=0;e<o;e++){this.modules[e]=new Array(o);for(var t=0;t<o;t++)this.modules[e][t]=null}this._setupPositionProbePattern(0,0),this._setupPositionProbePattern(o-7,0),this._setupPositionProbePattern(0,o-7),this._setupTimingPattern();var n=this._createData();this._mapData(n)},_setupPositionProbePattern:function(o,e){for(var t=-1;t<=7;t++)for(var n=-1;n<=7;n++){var r=o+t,i=e+n;r<0||r>=this.moduleCount||i<0||i>=this.moduleCount||(this.modules[r][i]=t>=0&&t<=6&&(0==n||6==n)||n>=0&&n<=6&&(0==t||6==t)||t>=2&&t<=4&&n>=2&&n<=4)}},_setupTimingPattern:function(){for(var o=8;o<this.moduleCount-8;o++)null==this.modules[o][6]&&(this.modules[o][6]=o%2==0),null==this.modules[6][o]&&(this.modules[6][o]=o%2==0)},_mapData:function(o){for(var e=-1,t=this.moduleCount-1,n=0,r=this.moduleCount-1;r>0;r-=2){6==r&&r--;for(;;){for(var i=0;i<2;i++)null==this.modules[r-i][t]&&(this.modules[r-i][t]=1==o.get(n++));if((t+=e)<0||t>=this.moduleCount){t-=e,e=-e;break}}}},_createData:function(){var o=new r;for(var e=0;e<this.dataList.length;e++){var t=this.dataList[e];o.put(4,4),o.put(t.getLength(),8),t.write(o)}for(;o.getLengthInBits()%8!=0;)o.put(0,1);return o}};
+o.QRCode=t,o.QRErrorCorrectLevel=e}(window);
+</script>
+  <script>
+    const pageNow = window.location.href.split('#')[0];
+    const urlParam = new URLSearchParams(location.search).get('link');
+    const qrTarget = urlParam ? decodeURIComponent(urlParam) : pageNow;
+
+    document.getElementById('pageUrl').textContent = qrTarget;
+    document.getElementById('pageUrl2').textContent = qrTarget;
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    document.getElementById('currentYear2').textContent = new Date().getFullYear();
+
+    function drawQR(elId, size){
+      const qr = new QRCode(4);
+      qr.addData(qrTarget);
+      qr.make();
+      const count = qr.getModuleCount();
+      const scale = Math.max(2, Math.floor(size / count));
+      const c = document.createElement('canvas');
+      c.width = c.height = count*scale;
+      const ctx = c.getContext('2d');
+      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,c.width,c.height);
+      ctx.fillStyle = '#000';
+      for(let r=0;r<count;r++){ for(let col=0;col<count;col++){ if(qr.isDark(r,col)) ctx.fillRect(col*scale,r*scale,scale,scale); } }
+      const el = document.getElementById(elId);
+      el.innerHTML = ''; el.appendChild(c);
+      return c;
+    }
+    drawQR('qrcode', 140);
+    drawQR('qrcode-flyer', 96);
+    drawQR('qrcode-flyer-big', 220);
+
+    function copyUrl(){ navigator.clipboard.writeText(qrTarget).then(()=>alert('Link kopiert: '+qrTarget)); }
+    function downloadQR(){
+      const canvas = document.querySelector('#qrcode canvas');
+      if(!canvas) return alert('QR nicht gefunden');
+      const a = document.createElement('a');
+      a.download = 'qr-code.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }
+    function printLandscape(){
+      var s=document.getElementById('landscapeStyle');
+      if(!s){
+        s=document.createElement('style'); s.id='landscapeStyle';
+        s.innerHTML='@media print{ @page{ size: A4 landscape; } }';
+        document.head.appendChild(s);
+      }
+      window.print();
+      setTimeout(()=>{ if(s) s.remove(); }, 500);
+    }
+
+    const iban = document.getElementById('ibanText');
+    if(iban){ iban.style.cursor='pointer'; iban.title='Klicken zum Kopieren';
+      iban.addEventListener('click',()=>{navigator.clipboard.writeText(iban.textContent.trim()); alert('IBAN kopiert');}) }
+    const pp = document.getElementById('ppText');
+    if(pp){ pp.style.cursor='pointer'; pp.title='Klicken zum Kopieren';
+      pp.addEventListener('click',()=>{navigator.clipboard.writeText(pp.textContent.trim()); alert('PayPal kopiert');}) }
+  </script>
+</body>
+</html>
